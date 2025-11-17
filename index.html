@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vNotation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <img src="Logo340x156-300x138.png" alt="vNotation">
+                vNotation
+            </h1>
+            <div class="controls">
+                <button id="exportBtn">Export</button>
+            </div>
+        </header>
+
+        <div class="main">
+            <div class="sidebar">
+                <div class="classes-input">
+                    <textarea id="classesTextarea" placeholder="Enter classes (one per line)&#10;person&#10;car&#10;dog&#10;cat"></textarea>
+                </div>
+                <div id="dropZone" class="drop-zone">
+                    <p>Drop image folder here</p>
+                </div>
+                <div id="imageList" class="image-list"></div>
+            </div>
+
+            <div class="canvas-area">
+                <div class="image-info">
+                    <span id="imageName">No image loaded</span>
+                    <span id="imageIndex"></span>
+                    <span id="dimensions"></span>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <div class="image-controls">
+                    <select id="classSelect">
+                        <option>Enter classes first</option>
+                    </select>
+                    <button id="clearBtn">Clear</button>
+                </div>
+                <div class="annotations-list">
+                    <h3>Annotations</h3>
+                    <div id="annotationsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
