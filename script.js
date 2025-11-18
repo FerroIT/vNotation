@@ -204,28 +204,31 @@ elements.canvas.addEventListener('mousedown', (e) => {
     const x = (e.clientX - rect.left) * scaleX;
     const y = (e.clientY - rect.top) * scaleY;
     
-    const fileName = state.images[state.currentIndex]?.name;
-    const boxes = state.annotations[fileName] || [];
-    
-    let clickedBox = -1;
-    for (let i = boxes.length - 1; i >= 0; i--) {
-        const box = boxes[i];
-        if (x >= box.x && x <= box.x + box.width && y >= box.y && y <= box.y + box.height) {
-            clickedBox = i;
-            break;
+    if (e.ctrlKey || e.metaKey) {
+        const fileName = state.images[state.currentIndex]?.name;
+        const boxes = state.annotations[fileName] || [];
+        
+        let clickedBox = -1;
+        for (let i = boxes.length - 1; i >= 0; i--) {
+            const box = boxes[i];
+            if (x >= box.x && x <= box.x + box.width && y >= box.y && y <= box.y + box.height) {
+                clickedBox = i;
+                break;
+            }
         }
-    }
-    
-    if (clickedBox !== -1) {
-        state.selectedAnnotation = clickedBox;
-        renderAnnotations();
-        drawCanvas();
+        
+        if (clickedBox !== -1) {
+            state.selectedAnnotation = clickedBox;
+            renderAnnotations();
+            drawCanvas();
+        }
     } else {
         state.drawing = true;
         state.startX = x;
         state.startY = y;
         state.selectedAnnotation = null;
         renderAnnotations();
+        drawCanvas();
     }
 });
 
