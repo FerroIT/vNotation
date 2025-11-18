@@ -101,9 +101,13 @@ elements.dropZone.addEventListener('drop', async (e) => {
     
     state.images = files
         .filter(f => /\.(jpg|jpeg|png|bmp|gif)$/i.test(f.name))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .slice(0, 100);
     
     if (state.images.length > 0) {
+        if (files.filter(f => /\.(jpg|jpeg|png|bmp|gif)$/i.test(f.name)).length > 100) {
+            alert('Limited to first 100 images');
+        }
         renderImageList();
         loadImage(0);
     }
